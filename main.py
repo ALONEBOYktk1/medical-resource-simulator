@@ -44,14 +44,10 @@ capacity = st.number_input("Total available resources", min_value=1, max_value=1
 
 # ----------- Compute Allocation -----------
 if st.button("Compute Optimal Allocation"):
-    max_val, selected = knapsack(values, weights, capacity)
-    st.success(f"Maximum total benefit: {max_val}")
-    st.write(f"Selected patients: {[i+1 for i in selected]}")
-
-    fig = plot_allocation(values, selected)
-    st.pyplot(fig)
-
-
+    # Extract values from session state
+    values = st.session_state.values
+    weights = st.session_state.weights
+    
     # Compute knapsack
     max_val, selected = knapsack(values, weights, capacity)
 
