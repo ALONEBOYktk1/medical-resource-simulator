@@ -62,4 +62,4 @@ medical_resource_simulator/
 ``
 
 ## Live Demo
-Try the interactive web app here: [Medical Resource Allocation Simulator](https://medical-resource-simulator.streamlit.app/)
+Try the interactive web app here: [Medical Resource Allocation Simulator](https://medical-resource-simulator.streamlit.app)
