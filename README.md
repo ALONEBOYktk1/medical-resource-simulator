@@ -49,7 +49,7 @@ The simulator helps visualize **how hospitals can optimize limited resources** e
 
 ## Folder Structure
 
-``
+```
 medical_resource_simulator/
 ├── src/
 │   ├── __init__.py
@@ -59,7 +59,7 @@ medical_resource_simulator/
 ├── requirements.txt        # Project dependencies
 ├── README.md               # Project description
 └── .gitignore              # Ignored files
-``
+```
 
 ## Live Demo
 Try the interactive web app here: [Medical Resource Allocation Simulator](https://medical-resource-simulator.streamlit.app)
