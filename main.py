@@ -19,10 +19,10 @@ except ImportError as e:
     st.stop()
 
 st.set_page_config(page_title="Medical Resource Allocation Simulator", page_icon="💉")
-st.title("💉 Medical Resource Allocation Simulator")
+st.title("Medical Resource Allocation Simulator")
 
 # Number of patients
-num_patients = st.slider("Number of patients", 3, 10, 5)
+num_patients = st.slider("Number of patients", 3, 5, 3)
 
 # Input patient data
 patients = []

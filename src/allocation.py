@@ -1,6 +1,6 @@
 # src/allocation.py
 
-def allocate_resources(patients, resources, critical_threshold=50):
+def allocate_resources(patients, resources, critical_threshold=60):
     """
     Dynamic hybrid allocation of multiple resources.
 
