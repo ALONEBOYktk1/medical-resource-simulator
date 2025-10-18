@@ -1,5 +1,4 @@
 # main.py
-# StreamLit entry point for medical resource allocation simulator
 
 import streamlit as st
 from src.allocation import knapsack
@@ -10,44 +9,44 @@ st.title("💉 Medical Resource Allocation Simulator")
 
 # ----------- Streamlit Inputs -----------
 
-# Slider to select number of patients
+# Slider for number of patients
 num_patients = st.slider("Number of patients", 3, 10, 5)
 
-# Initialize session state for dynamic inputs
+# Initialize session state for patient data
 if 'values' not in st.session_state or len(st.session_state.values) != num_patients:
     st.session_state.values = [10] * num_patients
 if 'weights' not in st.session_state or len(st.session_state.weights) != num_patients:
     st.session_state.weights = [5] * num_patients
 
-# Collect patient data with unique keys
+# Dynamic input fields
 for i in range(num_patients):
+    key_val = f"value_{i}"
+    key_wt = f"weight_{i}"
+
     val = st.number_input(
         f"Patient {i+1} priority/benefit",
-        min_value=1,
-        max_value=100,
+        min_value=1, max_value=100,
         value=st.session_state.values[i],
-        key=f"value_{i}"
+        key=key_val
     )
     wt = st.number_input(
         f"Patient {i+1} resource requirement",
-        min_value=1,
-        max_value=20,
+        min_value=1, max_value=20,
         value=st.session_state.weights[i],
-        key=f"weight_{i}"
+        key=key_wt
     )
-    # Update session state
+
     st.session_state.values[i] = val
     st.session_state.weights[i] = wt
 
-# Input for total available resources
+# Input for total resources
 capacity = st.number_input("Total available resources", min_value=1, max_value=100, value=20)
 
 # ----------- Compute Allocation -----------
 if st.button("Compute Optimal Allocation"):
-    # Extract values from session state
     values = st.session_state.values
     weights = st.session_state.weights
-    
+
     # Compute knapsack
     max_val, selected = knapsack(values, weights, capacity)
 
@@ -55,7 +54,6 @@ if st.button("Compute Optimal Allocation"):
     st.success(f"Maximum total benefit: {max_val}")
     st.write(f"Selected patients: {[i+1 for i in selected]}")
 
-    # Plot allocation graph
+    # Plot allocation
     fig = plot_allocation(values, selected)
     st.pyplot(fig)
-
