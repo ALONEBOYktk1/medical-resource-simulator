@@ -2,11 +2,7 @@
 
 import matplotlib.pyplot as plt
 
-# src/visualization.py
-
-import matplotlib.pyplot as plt
-
-def plot_allocation(patients_allocation, resources):
+def plot_allocation(patients_allocation, patients_original):
     """
     Plot patient allocation using color-coded bars:
     - Green = fully allocated
@@ -15,16 +11,20 @@ def plot_allocation(patients_allocation, resources):
 
     Args:
         patients_allocation (list of dict): Output from allocate_resources
-        resources (dict): resource types (for total requirement comparison)
+        patients_original (list of dict): Original patient data with needs
     """
     labels = [p['name'] for p in patients_allocation]
     total_needs = []
     allocated_totals = []
     colors = []
 
+    # Create a mapping of patient names to their original needs
+    needs_map = {p['name']: p['needs'] for p in patients_original}
+
     for p in patients_allocation:
         # Sum of all resources needed and allocated for this patient
-        need_sum = sum(p['needs'].values())
+        original_needs = needs_map[p['name']]
+        need_sum = sum(original_needs.values())
         allocated_sum = sum(p['allocated'].values())
 
         total_needs.append(need_sum)

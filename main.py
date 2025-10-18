@@ -1,8 +1,22 @@
 # main.py
 
 import streamlit as st
-from src.allocation import allocate_resources
-from src.visualization import plot_allocation
+import sys
+import os
+from pathlib import Path
+
+# Add the project root to Python path
+project_root = Path(__file__).parent.absolute()
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+try:
+    from src.allocation import allocate_resources
+    from src.visualization import plot_allocation
+except ImportError as e:
+    st.error(f"Import error: {e}")
+    st.error("Please check that all required files are present in the deployment.")
+    st.stop()
 
 st.set_page_config(page_title="Medical Resource Allocation Simulator", page_icon="💉")
 st.title("💉 Medical Resource Allocation Simulator")
@@ -41,5 +55,5 @@ if st.button("Compute Allocation"):
         st.write(f"{p['name']} (Priority {p['priority']}): {p['allocated']}")
 
     # Plot allocation
-    fig = plot_allocation(allocation, resources)
+    fig = plot_allocation(allocation, patients)
     st.pyplot(fig)
