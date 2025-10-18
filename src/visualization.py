@@ -16,7 +16,7 @@ def plot_allocation(values, selected, labels=None):
     if labels is None:
         labels = [f"Patient {i+1}" for i in range(n)]
 
-    colors = ['green' if i in selected else 'red' for i in range(n)]
+    colors = ['green' if i in selected else 'red' for i in range(len(values))]
 
     fig, ax = plt.subplots()
     ax.bar(labels, values, color=colors)
