@@ -18,8 +18,8 @@ except ImportError as e:
     st.error("Please check that all required files are present in the deployment.")
     st.stop()
 
-st.set_page_config(page_title="Medical Resource Allocation Simulator", page_icon="💉")
-st.title("Medical Resource Allocation Simulator")
+st.set_page_config(page_title="Medical Resource Allocation", page_icon="🩺")
+st.title("🩺 Medical Resource Allocator")
 
 # Number of patients
 num_patients = st.slider("Number of patients", 3, 5, 3)
