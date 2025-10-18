@@ -1,37 +1,51 @@
 # src/allocation.py
 
-def knapsack(values, weights, capacity):
+def allocate_resources(patients, resources, critical_threshold=50):
     """
-    Solve the 0/1 Knapsack problem for resource allocation.
+    Dynamic hybrid allocation of multiple resources.
 
     Args:
-        values (list): Priority/benefit of each patient
-        weights (list): Resource units required per patient
-        capacity (int): Total available resources
+        patients (list of dict): Each dict has:
+            - "name": str
+            - "priority": int
+            - "needs": dict of resource_type -> units_needed
+        resources (dict): resource_type -> total units available
+        critical_threshold (int): Priority above which patient is critical
 
     Returns:
-        max_value (int): Maximum total benefit achievable
-        selected (list): Indices of selected patients
+        allocation (list of dict): Each dict has:
+            - "name": patient name
+            - "allocated": dict of resource_type -> units allocated
+            - "priority": int
     """
-    n = len(values)
-    dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]
 
-    for i in range(1, n + 1):
-        for w in range(capacity + 1):
-            if weights[i - 1] <= w:
-                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]],
-                               dp[i - 1][w])
-            else:
-                dp[i][w] = dp[i - 1][w]
+    # Sort patients by priority descending
+    patients_sorted = sorted(patients, key=lambda x: x['priority'], reverse=True)
 
-    # Backtrack to find selected items
-    w = capacity
-    selected = []
-    for i in range(n, 0, -1):
-        if dp[i][w] != dp[i - 1][w]:
-            selected.append(i - 1)
-            w -= weights[i - 1]
+    # Initialize allocation
+    allocation = []
+    remaining_resources = resources.copy()
 
-    selected.reverse()
-    max_value = dp[n][capacity]
-    return max_value, selected
+    # Step 1: Allocate critical patients first
+    for patient in patients_sorted:
+        allocated = {}
+        if patient['priority'] >= critical_threshold:
+            for res, need in patient['needs'].items():
+                allocated[res] = min(need, remaining_resources.get(res, 0))
+                remaining_resources[res] = remaining_resources.get(res, 0) - allocated[res]
+        else:
+            # Leave for step 2
+            allocated = {res: 0 for res in patient['needs']}
+        allocation.append({"name": patient['name'], "allocated": allocated, "priority": patient['priority']})
+
+    # Step 2: Allocate remaining resources to non-critical patients by descending priority
+    for i, patient in enumerate(patients_sorted):
+        if patient['priority'] < critical_threshold:
+            allocated = allocation[i]['allocated']
+            for res, need in patient['needs'].items():
+                if remaining_resources.get(res, 0) > 0:
+                    allocated[res] = min(need, remaining_resources[res])
+                    remaining_resources[res] -= allocated[res]
+            allocation[i]['allocated'] = allocated
+
+    return allocation
